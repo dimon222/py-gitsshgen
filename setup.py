@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="gitsshgen",
-    version="1.1.0",
+    version="1.2.0",
     author="Dmitry Romanenko",
     author_email="Dmitry@Romanenko.in",
     description="Automatic generation of SSH keys for VCS",
