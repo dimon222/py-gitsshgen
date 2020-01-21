@@ -14,7 +14,8 @@ SUPPORTED_INSTANCE_TYPES = [
     "github",
     "gitlab",
     "bitbucket",
-    "gogs"
+    "gogs",
+    "gitea"
 ]
 
 
@@ -65,7 +66,7 @@ def main():
                         help="instance type")
     parser.add_argument("url", type=str,
                         help="instance url")
-    parser.add_argument("-u", type=str,
+    parser.add_argument("u", type=str,
                         help="instance username")
     parser.add_argument("-t", dest='t', type=str,
                         help="personal application token")
@@ -79,8 +80,8 @@ def main():
                         default=65537, help="rsa exponent for RSA key")
     parser.add_argument("-sl", "--ssh-label", dest='ssh_label', type=str,
                         default=HOSTNAME, help="ssh label in VCS")
-    parser.add_argument("-v", "--verbosity", dest='v', type=int,
-                        help="increase output verbosity")
+    #parser.add_argument("-v", "--verbosity", dest='v', type=int,
+    #                    help="increase output verbosity")
     args = parser.parse_args()
 
     process(args)
