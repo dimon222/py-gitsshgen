@@ -43,3 +43,4 @@ If you don't provide token, script will open browser on page where you can make 
 2. Gitlab
 3. Gogs
 4. Bitbucket
+5. Gitea
