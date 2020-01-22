@@ -12,7 +12,7 @@ class Github(VCS):
     def _find_api_url(self):
         api_url_variants = [
             f"https://api.{self.base_url}",
-            f"https://{self.base_url}/v3/api"
+            f"https://{self.base_url}/api/v3"
         ]
         subpath = ""
 
