@@ -33,10 +33,10 @@ optional arguments:
 ```
 
 Example with token:  
-`python create_ssh_key.py bitbucket bitbucket.org -u testusername -t testtoken`
+`gitsshgen bitbucket bitbucket.org testusername -t testtoken`
 
 If you don't provide token, script will open browser on page where you can make one, and ask you to enter it.  
-`python create_ssh_key.py bitbucket bitbucket.org -u testusername`
+`gitsshgen bitbucket bitbucket.org testusername`
 
 ### VCS Compatibility
 1. Github
