@@ -3,15 +3,31 @@ import socket
 from abc import ABC, abstractmethod
 
 import requests
-from Crypto.PublicKey import RSA
+import asyncssh
 
 log = logging.getLogger(__name__)
 
 
-def generate_public_private_keypair(bits, rsa_exponent):
-    key = RSA.generate(bits, e=rsa_exponent)
-    private_key = key.export_key()
-    public_key = key.publickey().export_key('OpenSSH')
+def generate_public_private_keypair(algo, key_size, exponent,
+                                    passphrase, cipher, rounds, hash_name):
+    if algo == 'ssh-rsa':
+        _private_key = asyncssh.generate_private_key(
+            algo,
+            key_size=key_size,
+            exponent=exponent
+        )
+    else:
+        _private_key = asyncssh.generate_private_key(
+            algo
+        )
+    private_key = _private_key.export_private_key(
+        'openssh',
+        passphrase=passphrase,
+        cipher_name=cipher,
+        hash_name=hash_name,
+        rounds=rounds
+    )
+    public_key = _private_key.export_public_key('openssh')
     return private_key, public_key.decode("utf-8")
 
 

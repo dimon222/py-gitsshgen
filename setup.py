@@ -16,7 +16,7 @@ setuptools.setup(
     license="Apache License 2.0",
     install_requires=[
         'requests',
-        'pycryptodome'
+        'asyncssh'
     ],
     classifiers=[
         "License :: OSI Approved :: Apache Software License",

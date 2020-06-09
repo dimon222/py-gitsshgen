@@ -46,8 +46,13 @@ def process(args):
     vcs_package = import_module('.modules.' + args.it, 'gitsshgen')
     vcs_module = getattr(vcs_package, args.it.capitalize())(domain_without_scheme, args.u, args.t, args.api_url)
     private_key, public_key = generate_public_private_keypair(
-        args.bits,
-        args.rsa_exponent
+        args.algo,
+        args.key_size,
+        args.exponent,
+        args.passphrase,
+        args.cipher,
+        args.rounds,
+        args.hash_name
     )
     vcs_module.submit_ssh_key(public_key, args.ssh_label)
 
@@ -76,10 +81,20 @@ def main():
                         help="API URL endpoint")
     parser.add_argument("-n", "--name", dest='n', type=str,
                         help="name for private key")
-    parser.add_argument("-b", "--bits", dest='bits', type=int,
-                        default=4096, help="bits size for RSA key")
-    parser.add_argument("-re", "--rsa-exponent", dest='rsa_exponent', type=int,
-                        default=65537, help="rsa exponent for RSA key")
+    parser.add_argument("-a", "--algorithm", dest='algo', type=str,
+                        default='ssh-ed25519', help="algorithm for keypair (default is ssh-ed25519)")
+    parser.add_argument("-ks", "--key-size", dest='key_size', type=int,
+                        default=None, help="key size (only for RSA)")
+    parser.add_argument("-e", "--exponent", dest='exponent', type=int,
+                        default=None, help="exponent (only for RSA)")
+    parser.add_argument("-p", "--passphrase", dest='passphrase', type=int,
+                        default=None, help="passphrase for OpenSSH key (default is None)")
+    parser.add_argument("-c", "--cipher", dest='cipher', type=str,
+                        default='aes256', help="cipher for OpenSSH key (default is aes256)")
+    parser.add_argument("-r", "--rounds", dest='rounds', type=int,
+                        default=128, help="rounds for OpenSSH key (default is 128)")
+    parser.add_argument("-hn", "--hash-name", dest='hash_name', type=str,
+                        default='sha256', help="hash name for OpenSSH key (default is sha256)")
     parser.add_argument("-sl", "--ssh-label", dest='ssh_label', type=str,
                         default=HOSTNAME, help="ssh label in VCS")
     #parser.add_argument("-v", "--verbosity", dest='v', type=int,
