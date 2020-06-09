@@ -57,7 +57,7 @@ def process(args):
     os.chmod(f"{home}/.ssh/{name}.pem", 0o700)
 
     with open(f"{home}/.ssh/config", "a") as file_out:
-        s = f"\nHost {domain_without_scheme}\n\tHostName {domain_without_scheme}\n\tUser git\n\tIdentityFile {home}/.ssh/{name}.pem\n\n"
+        s = f"\nHost {domain_without_scheme}\nHostName {domain_without_scheme}\nUser git\nIdentityFile {home}/.ssh/{name}.pem\nIdentitiesOnly yes\nPreferredAuthentications publickey\n\n"
         file_out.write(s)
 
 
