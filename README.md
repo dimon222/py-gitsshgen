@@ -7,7 +7,7 @@ I was incredibly tired of doing the same procedure over and over for dozens of d
 ## How to use?
 The script generates OpenSSH keypair and pushes public key to VCS using PAT (Personal Access Token) or App Password (Bitbucket only). The private key automatically goes to `~/.ssh/{name}.pem` + reference to it is appended to `~/.ssh/config` for automatic pickup by Git with OpenSSH configuration. The setup is assumed OpenSSH always.
 
-Supported parameters for key generation - https://asyncssh.readthedocs.io/en/latest/api.html#asyncssh.generate_private_key
+Supported parameters for key generation - https://asyncssh.readthedocs.io/en/latest/api.html#asyncssh.generate_private_key   
 Supported parameters for private key export - https://asyncssh.readthedocs.io/en/latest/api.html#asyncssh.SSHKey.export_private_key
 
 Default settings:
